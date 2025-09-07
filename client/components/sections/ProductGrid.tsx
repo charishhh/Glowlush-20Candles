@@ -31,7 +31,7 @@ export default function ProductGrid() {
         {products.map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-4 shadow-sm transition hover:shadow-md">
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted">
-              <img src={IMAGE_URL} alt={p.name} className="h-full w-full object-cover" />
+              <img src={IMAGE_URL} alt={p.name} className="h-full w-full object-cover" style={{ objectPosition: (p as any).imagePosition || 'center' }} />
 
               {p.badge && (
                 <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
