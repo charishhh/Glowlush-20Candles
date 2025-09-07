@@ -30,12 +30,15 @@ export default function ProductGrid() {
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-4 shadow-sm transition hover:shadow-md">
-            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-100 to-rose-100 aspect-square">
+            <div className="relative overflow-hidden rounded-xl aspect-square bg-muted">
+              <img src={IMAGE_URL} alt={p.name} className="h-full w-full object-cover" />
+
               {p.badge && (
                 <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
                   {p.badge}
                 </span>
               )}
+
               <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-background/80 p-2 text-sm backdrop-blur ring-1 ring-border">
                 <span className="font-medium">{p.name}</span>
                 <span className="rounded-md bg-primary px-2 py-0.5 text-primary-foreground">₹{p.price}</span>
