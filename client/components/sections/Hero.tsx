@@ -28,11 +28,22 @@ export default function Hero() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-3 md:gap-4">
-          <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-amber-200 to-rose-200 shadow-sm" />
-          <div className="aspect-square rounded-2xl bg-gradient-to-br from-rose-200 to-amber-100 shadow-sm" />
-          <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-amber-100 to-rose-100 shadow-sm" />
-          <div className="col-span-2 aspect-video rounded-2xl bg-gradient-to-br from-rose-100 to-amber-200 shadow-sm" />
-          <div className="aspect-square rounded-2xl bg-gradient-to-br from-amber-200 to-rose-200 shadow-sm" />
+          {/** Use uploaded catalog image in a few tiles for immediate visual showcase */}
+          <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-sm">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
+          </div>
+          <div className="aspect-square overflow-hidden rounded-2xl shadow-sm">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
+          </div>
+          <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-sm">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
+          </div>
+          <div className="col-span-2 aspect-video overflow-hidden rounded-2xl shadow-sm">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=1200" alt="catalog" className="h-full w-full object-cover" />
+          </div>
+          <div className="aspect-square overflow-hidden rounded-2xl shadow-sm">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
+          </div>
         </div>
       </div>
     </section>
