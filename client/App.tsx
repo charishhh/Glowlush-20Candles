@@ -30,4 +30,16 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+const container = document.getElementById("root");
+const ROOT_KEY = "__FUSION_APP_ROOT__";
+if (container) {
+  // Avoid calling createRoot multiple times during HMR / re-evaluations
+  const anyWin = window as any;
+  if (!anyWin[ROOT_KEY]) {
+    anyWin[ROOT_KEY] = createRoot(container);
+  }
+  anyWin[ROOT_KEY].render(<App />);
+} else {
+  // Fallback - shouldn't happen in normal app boot
+  console.error("Root container not found: #root");
+}
