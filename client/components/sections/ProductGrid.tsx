@@ -30,7 +30,7 @@ export default function ProductGrid() {
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((p) => (
-          <article key={p.id} className="group rounded-2xl border bg-card p-4 shadow-sm transition hover:shadow-md">
+          <article key={p.id} className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md">
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
               {/* Empty visual space for product — image removed as requested */}
               <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
@@ -41,12 +41,12 @@ export default function ProductGrid() {
                 </span>
               )}
 
-              <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-background/80 p-2 text-sm backdrop-blur ring-1 ring-border">
-                <span className="font-medium">{p.name}</span>
-                <span className="rounded-md bg-primary px-2 py-0.5 text-primary-foreground">₹{p.price}</span>
+              <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-background/90 p-3 text-base backdrop-blur ring-1 ring-border">
+                <span className="font-semibold text-lg">{p.name}</span>
+                <span className="rounded-md bg-primary px-3 py-1 text-sm md:text-base font-semibold">₹{p.price}</span>
               </div>
             </div>
-            {p.description && <p className="mt-3 text-sm text-muted-foreground">{p.description}</p>}
+            {p.description && <p className="mt-4 text-base text-muted-foreground">{p.description}</p>}
           </article>
         ))}
       </div>
