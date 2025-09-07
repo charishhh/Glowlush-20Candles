@@ -27,22 +27,13 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3 md:gap-4">
-          {/** Use uploaded catalog image in a few tiles for immediate visual showcase */}
-          <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-sm">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-2xl shadow-sm">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
-          </div>
-          <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-sm">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
-          </div>
-          <div className="col-span-2 aspect-video overflow-hidden rounded-2xl shadow-sm">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=1200" alt="catalog" className="h-full w-full object-cover" />
-          </div>
-          <div className="aspect-square overflow-hidden rounded-2xl shadow-sm">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800" alt="catalog" className="h-full w-full object-cover" />
+        <div className="flex items-center justify-center">
+          <div className="w-full max-w-4xl overflow-hidden rounded-3xl shadow-lg">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=1400"
+              alt="catalog"
+              className="w-full h-auto block"
+            />
           </div>
         </div>
       </div>
