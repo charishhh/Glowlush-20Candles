@@ -31,8 +31,9 @@ export default function ProductGrid() {
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-4 shadow-sm transition hover:shadow-md">
-            <div className="relative overflow-hidden rounded-xl aspect-square bg-muted">
-              <img src={IMAGE_URL} alt={p.name} className="h-full w-full object-cover" style={{ objectPosition: (p as any).imagePosition || 'center' }} />
+            <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
+              {/* Empty visual space for product — image removed as requested */}
+              <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
 
               {p.badge && (
                 <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
