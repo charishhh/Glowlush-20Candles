@@ -7,30 +7,89 @@ type Product = {
   imagePosition?: string;
 };
 
-const IMAGE_URL = "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800";
+const IMAGE_URL =
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800";
 
 const products: Product[] = [
-  { id: "sunflower-melt", name: "Sunflower Melt (pair)", price: 199, badge: "Bestseller", description: "Sunflower shaped melts", imagePosition: "16% 8%" },
-  { id: "rose-blossom", name: "Rose Blossom Candle", price: 249, description: "Delicate rose design", imagePosition: "50% 12%" },
-  { id: "lotus-white", name: "Lotus Aroma Candle", price: 299, description: "Calming lotus petals", imagePosition: "84% 8%" },
-  { id: "heart-bubble", name: "Heart Bubble Set", price: 229, description: "Playful heart shapes", imagePosition: "16% 52%" },
-  { id: "ribbed-pillar", name: "Ribbed Pillar", price: 279, description: "Elegant ribbed pillar", imagePosition: "50% 52%" },
-  { id: "tealight-mix", name: "Assorted Tealights (6)", price: 199, description: "Variety pack", imagePosition: "84% 52%" },
-  { id: "flower-wax-cups", name: "Floral Wax Cups (2)", price: 259, description: "Flower topped wax cups", imagePosition: "30% 86%" },
-  { id: "gift-box", name: "Festive Gift Box", price: 599, badge: "Gift Pick", description: "Perfect for gifting", imagePosition: "70% 86%" },
+  {
+    id: "sunflower-melt",
+    name: "Sunflower Melt (pair)",
+    price: 199,
+    badge: "Bestseller",
+    description: "Sunflower shaped melts",
+    imagePosition: "16% 8%",
+  },
+  {
+    id: "rose-blossom",
+    name: "Rose Blossom Candle",
+    price: 249,
+    description: "Delicate rose design",
+    imagePosition: "50% 12%",
+  },
+  {
+    id: "lotus-white",
+    name: "Lotus Aroma Candle",
+    price: 299,
+    description: "Calming lotus petals",
+    imagePosition: "84% 8%",
+  },
+  {
+    id: "heart-bubble",
+    name: "Heart Bubble Set",
+    price: 229,
+    description: "Playful heart shapes",
+    imagePosition: "16% 52%",
+  },
+  {
+    id: "ribbed-pillar",
+    name: "Ribbed Pillar",
+    price: 279,
+    description: "Elegant ribbed pillar",
+    imagePosition: "50% 52%",
+  },
+  {
+    id: "tealight-mix",
+    name: "Assorted Tealights (6)",
+    price: 199,
+    description: "Variety pack",
+    imagePosition: "84% 52%",
+  },
+  {
+    id: "flower-wax-cups",
+    name: "Floral Wax Cups (2)",
+    price: 259,
+    description: "Flower topped wax cups",
+    imagePosition: "30% 86%",
+  },
+  {
+    id: "gift-box",
+    name: "Festive Gift Box",
+    price: 599,
+    badge: "Gift Pick",
+    description: "Perfect for gifting",
+    imagePosition: "70% 86%",
+  },
 ];
 
 export default function ProductGrid() {
   return (
     <section id="products" className="container py-16 md:py-24">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl tracking-tight md:text-4xl">Handmade Fancy Scented Candles</h2>
-        <p className="mt-3 text-muted-foreground">Simple, elegant designs inspired by your reference catalog — now with clear pricing.</p>
+        <h2 className="font-display text-3xl tracking-tight md:text-4xl">
+          Handmade Fancy Scented Candles
+        </h2>
+        <p className="mt-3 text-muted-foreground">
+          Simple, elegant designs inspired by your reference catalog — now with
+          clear pricing.
+        </p>
       </div>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((p) => (
-          <article key={p.id} className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md">
+          <article
+            key={p.id}
+            className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md"
+          >
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
               {/* Empty visual space for product — image removed as requested */}
               <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
@@ -43,10 +102,16 @@ export default function ProductGrid() {
 
               <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-background/90 p-3 text-base backdrop-blur ring-1 ring-border">
                 <span className="font-semibold text-lg">{p.name}</span>
-                <span className="rounded-md bg-primary px-3 py-1 text-sm md:text-base font-semibold">₹{p.price}</span>
+                <span className="rounded-md bg-primary px-3 py-1 text-sm md:text-base font-semibold">
+                  ₹{p.price}
+                </span>
               </div>
             </div>
-            {p.description && <p className="mt-4 text-base text-muted-foreground">{p.description}</p>}
+            {p.description && (
+              <p className="mt-4 text-base text-muted-foreground">
+                {p.description}
+              </p>
+            )}
           </article>
         ))}
       </div>

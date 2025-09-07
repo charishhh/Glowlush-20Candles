@@ -11,13 +11,37 @@ export default function SiteFooter() {
         </div>
         <div className="grid gap-2 text-sm">
           <p>
-            WhatsApp: <a className="font-medium underline decoration-primary/40 underline-offset-4 hover:text-foreground" href="https://wa.me/919880885792" target="_blank" rel="noreferrer">+91 98808 85792</a>
+            WhatsApp:{" "}
+            <a
+              className="font-medium underline decoration-primary/40 underline-offset-4 hover:text-foreground"
+              href="https://wa.me/919880885792"
+              target="_blank"
+              rel="noreferrer"
+            >
+              +91 98808 85792
+            </a>
           </p>
           <p>
-            Call: <a className="font-medium underline decoration-primary/40 underline-offset-4 hover:text-foreground" href="tel:+919880885792">+91 98808 85792</a>
+            Call:{" "}
+            <a
+              className="font-medium underline decoration-primary/40 underline-offset-4 hover:text-foreground"
+              href="tel:+919880885792"
+            >
+              +91 98808 85792
+            </a>
           </p>
-          <p>Email: <a className="underline decoration-primary/40 underline-offset-4" href="mailto:hello@glowlushcandles.com">hello@glowlushcandles.com</a></p>
-          <p className="text-muted-foreground">Open to bulk and custom orders.</p>
+          <p>
+            Email:{" "}
+            <a
+              className="underline decoration-primary/40 underline-offset-4"
+              href="mailto:hello@glowlushcandles.com"
+            >
+              hello@glowlushcandles.com
+            </a>
+          </p>
+          <p className="text-muted-foreground">
+            Open to bulk and custom orders.
+          </p>
         </div>
       </div>
       <div className="border-t py-4 text-center text-xs text-muted-foreground">

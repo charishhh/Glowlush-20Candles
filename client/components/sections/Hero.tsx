@@ -19,10 +19,16 @@ export default function Hero() {
             Clean burn, lovely aroma, beautifully gift-ready.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#products" className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90">
+            <a
+              href="#products"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90"
+            >
               Browse products
             </a>
-            <a href="#contact" className="inline-flex h-11 items-center justify-center rounded-md border border-input bg-background px-6 text-sm font-semibold hover:bg-muted">
+            <a
+              href="#contact"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-input bg-background px-6 text-sm font-semibold hover:bg-muted"
+            >
               Custom order
             </a>
           </div>
