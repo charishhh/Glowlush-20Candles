@@ -9,14 +9,14 @@ type Product = {
 const IMAGE_URL = "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800";
 
 const products: Product[] = [
-  { id: "sunflower-melt", name: "Sunflower Melt (pair)", price: 199, badge: "Bestseller" },
-  { id: "rose-blossom", name: "Rose Blossom Candle", price: 249 },
-  { id: "lotus-white", name: "Lotus Aroma Candle", price: 299 },
-  { id: "heart-bubble", name: "Heart Bubble Set", price: 229 },
-  { id: "ribbed-pillar", name: "Ribbed Pillar", price: 279 },
-  { id: "tealight-mix", name: "Assorted Tealights (6)", price: 199 },
-  { id: "flower-wax-cups", name: "Floral Wax Cups (2)", price: 259 },
-  { id: "gift-box", name: "Festive Gift Box", price: 599, badge: "Gift Pick" },
+  { id: "sunflower-melt", name: "Sunflower Melt (pair)", price: 199, badge: "Bestseller", description: "Sunflower shaped melts" },
+  { id: "rose-blossom", name: "Rose Blossom Candle", price: 249, description: "Delicate rose design" },
+  { id: "lotus-white", name: "Lotus Aroma Candle", price: 299, description: "Calming lotus petals" },
+  { id: "heart-bubble", name: "Heart Bubble Set", price: 229, description: "Playful heart shapes" },
+  { id: "ribbed-pillar", name: "Ribbed Pillar", price: 279, description: "Elegant ribbed pillar" },
+  { id: "tealight-mix", name: "Assorted Tealights (6)", price: 199, description: "Variety pack" },
+  { id: "flower-wax-cups", name: "Floral Wax Cups (2)", price: 259, description: "Flower topped wax cups" },
+  { id: "gift-box", name: "Festive Gift Box", price: 599, badge: "Gift Pick", description: "Perfect for gifting" },
 ];
 
 export default function ProductGrid() {
