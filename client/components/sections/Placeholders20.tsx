@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { products as existingProducts } from "./ProductGrid";
 
 type Slot = {
   id: number;
@@ -7,11 +8,13 @@ type Slot = {
 };
 
 export default function Placeholders20() {
-  const initial: Slot[] = Array.from({ length: 20 }).map((_, i) => ({
-    id: i + 1,
-    name: "",
-    price: "",
-  }));
+  const initial: Slot[] = (() => {
+    const prefilled: Slot[] = existingProducts.map((p, i) => ({ id: i + 1, name: p.name, price: String(p.price) }));
+    for (let i = prefilled.length; i < 20; i++) {
+      prefilled.push({ id: i + 1, name: "", price: "" });
+    }
+    return prefilled;
+  })();
 
   const [slots, setSlots] = useState<Slot[]>(initial);
 
