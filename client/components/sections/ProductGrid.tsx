@@ -10,7 +10,7 @@ type Product = {
 const IMAGE_URL =
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800";
 
-export const products: Product[] = [
+const products: Product[] = [
   {
     id: "sunflower-melt",
     name: "Sunflower Melt (pair)",
