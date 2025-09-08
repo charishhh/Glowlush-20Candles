@@ -155,15 +155,15 @@ export default function ProductGrid() {
               </div>
             </div>
 
-            <div className="mt-4 space-y-2">
-              <label className="block text-sm">
+            <div className="mt-3 space-y-1">
+              <label className="block text-xs">
                 <span className="text-muted-foreground">Name</span>
-                <input value={p.name} onChange={(e) => update(p.id, "name", e.target.value)} placeholder="Product name" className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30" />
+                <input value={p.name} onChange={(e) => update(p.id, "name", e.target.value)} placeholder="Product name" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
               </label>
 
-              <label className="block text-sm">
+              <label className="block text-xs">
                 <span className="text-muted-foreground">Price (INR)</span>
-                <input value={p.price} onChange={(e) => update(p.id, "price", e.target.value)} placeholder="e.g. 199" inputMode="numeric" className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30" />
+                <input value={p.price} onChange={(e) => update(p.id, "price", e.target.value)} placeholder="e.g. 199" inputMode="numeric" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
               </label>
             </div>
 
