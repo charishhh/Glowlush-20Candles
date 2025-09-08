@@ -7,6 +7,7 @@ type Product = {
   badge?: string;
   description?: string;
   imagePosition?: string;
+  imageUrl?: string;
 };
 
 const IMAGE_URL =
