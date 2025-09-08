@@ -6,16 +6,10 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="group inline-flex items-center gap-2">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20 group-hover:bg-primary/20 transition-colors">
-            <Flame className="h-5 w-5" />
-          </span>
-          <div className="leading-tight">
-            <div className="font-display text-xl tracking-tight">
-              Glowlush Candles
-            </div>
-            <div className="text-xs text-muted-foreground">
-              Handmade • Scented • Cozy
-            </div>
+          <div className="leading-tight flex flex-col items-start">
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F1bb8978b65894e10a63ea8ff169afa1d?format=webp&width=300" alt="Glowlush Candles logo" className="mb-1 h-10 w-auto object-contain" />
+            <div className="font-display text-xl tracking-tight">Glowlush Candles</div>
+            <div className="text-xs text-muted-foreground">Handmade • Scented • Cozy</div>
           </div>
         </Link>
 
