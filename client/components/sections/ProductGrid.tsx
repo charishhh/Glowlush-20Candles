@@ -87,6 +87,18 @@ const extraImages = [
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F096ae6b1f62b460fb6fccd5d96ee299b?format=webp&width=800",
 ];
 
+const extraNames = [
+  "Sunflower Mini Box",
+  "Assorted Decorative Balls",
+  "Rose Gift Pair",
+  "Pastel Rose Set",
+  "Mixed Tealights & Squares",
+  "Glass Flower Votive Set",
+  "Sunflower Box (yellow)",
+  "Heart Textured Candles",
+  "Lotus Tea Light Set",
+];
+
 type Slot = {
   id: number;
   name: string;
