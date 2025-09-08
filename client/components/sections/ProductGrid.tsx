@@ -149,9 +149,9 @@ export default function ProductGrid() {
                 </span>
               )}
 
-              <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-background/90 p-3 text-base backdrop-blur ring-1 ring-border">
-                <span className="font-semibold text-lg">{p.name || "Add name"}</span>
-                <span className="rounded-md bg-primary px-3 py-1 text-sm md:text-base font-semibold">{p.price ? `₹${p.price}` : "Add price"}</span>
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-lg bg-background/70 px-2 py-1 text-sm backdrop-blur-sm ring-1 ring-border">
+                <span className="font-medium text-sm truncate max-w-[68%]">{p.name || "Add name"}</span>
+                <span className="rounded-md bg-primary px-2 py-0.5 text-xs md:text-sm font-semibold">{p.price ? `₹${p.price}` : "Add price"}</span>
               </div>
             </div>
 
