@@ -85,6 +85,14 @@ const extraImages = [
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F0f6668705dfc4f01a6bc2a1b678ffdc3?format=webp&width=800",
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F8fa84221f5284624a5e28fe3d58d8183?format=webp&width=800",
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F096ae6b1f62b460fb6fccd5d96ee299b?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F543e5abfa9ef41ef80038f9bedcec407?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F9551eef070ab471480fdbef35c5a6046?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fc0b40fa6595f4bbd91ad3766c70cf4d0?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F8a6033b3a033421780c45b0deb0dd6c9?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F6291643e059b46668952107bb2a7023c?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F61f90c05af204f33aa39bdac3bb20147?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F4eeaa4adb51544219f9d2c3e5d6d655e?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fea4c428e5ad64f6388ee4a88844a414a?format=webp&width=800",
 ];
 
 const extraNames = [
@@ -97,6 +105,14 @@ const extraNames = [
   "Sunflower Box (yellow)",
   "Heart Textured Candles",
   "Lotus Tea Light Set",
+  "Rose Gift Pair (alt)",
+  "Rose 6-Pack",
+  "Colorful Glass Votive Set",
+  "Sunflower 6-Pack (Yellow)",
+  "Two-Tone Ribbed Pillar",
+  "Ribbed Pillar Set (Assorted)",
+  "Floral Tealight Collection",
+  "Pastel Rose Pair",
 ];
 
 type Slot = {
