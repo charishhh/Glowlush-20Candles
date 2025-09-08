@@ -93,6 +93,12 @@ const extraImages = [
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F61f90c05af204f33aa39bdac3bb20147?format=webp&width=800",
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F4eeaa4adb51544219f9d2c3e5d6d655e?format=webp&width=800",
   "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fea4c428e5ad64f6388ee4a88844a414a?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fbeef9bb959f84a008e66915f4cb0db5b?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F2c234e27353e425e99bce2cee42dd7cd?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F83ad5e164c74438c8114c97c3af25d71?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fb4381ccb207945978a9e24e1873c13a9?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F8a21a8e24062487790f7553775cbfaee?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fce8836d989944a9d91b2a74fa6f14ec3?format=webp&width=800",
 ];
 
 const extraNames = [
@@ -113,6 +119,13 @@ const extraNames = [
   "Ribbed Pillar Set (Assorted)",
   "Floral Tealight Collection",
   "Pastel Rose Pair",
+  "Blue Daisy Votive",
+  "Orange Festive Ball Set",
+  "Dual Glass Flower Votives",
+  "Sunflower Clay Diya Pack",
+  "Sunflower Double Diya",
+  "Colorful Diya & Flower Set",
+  "Festive Orange Roli Balls",
 ];
 
 type Slot = {
