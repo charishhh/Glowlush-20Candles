@@ -100,10 +100,18 @@ export default function ProductGrid() {
   // initialize 20 slots: prefill with existing products where available
   const initial: Slot[] = Array.from({ length: 20 }).map((_, i) => {
     const prod = products[i];
+    const extra = extraImages[i - products.length];
     if (prod) {
-      return { id: i + 1, name: prod.name, price: String(prod.price), badge: prod.badge || null, description: prod.description || null };
+      return {
+        id: i + 1,
+        name: prod.name,
+        price: String(prod.price),
+        badge: prod.badge || null,
+        description: prod.description || null,
+        imageUrl: prod.imageUrl || null,
+      };
     }
-    return { id: i + 1, name: "", price: "", badge: null, description: null };
+    return { id: i + 1, name: "", price: "", badge: null, description: null, imageUrl: extra || null };
   });
 
   const [slots, setSlots] = useState<Slot[]>(initial);
