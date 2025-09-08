@@ -134,7 +134,7 @@ export default function ProductGrid() {
       </div>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {slots.map((p) => (
+        {slots.filter((s) => !!s.imageUrl).map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md">
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
               {p.imageUrl ? (
