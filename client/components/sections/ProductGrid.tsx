@@ -75,12 +75,25 @@ const products: Product[] = [
   },
 ];
 
+const extraImages = [
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F714b78487c3d473b94da75dcfc6ebcaa?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F7274fea74c1846d595c4f1e72d0199b4?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fadc945aff52542a8b706f4ed0925876a?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fa384721ae796474d9af33928dfb62630?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2Fc76a0f2cf31d4eab8624f8ffa22deff5?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F938587a5ddbd4eb797bd771c4253b6f6?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F0f6668705dfc4f01a6bc2a1b678ffdc3?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F8fa84221f5284624a5e28fe3d58d8183?format=webp&width=800",
+  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F096ae6b1f62b460fb6fccd5d96ee299b?format=webp&width=800",
+];
+
 type Slot = {
   id: number;
   name: string;
   price: string;
   badge?: string | null;
   description?: string | null;
+  imageUrl?: string | null;
 };
 
 export default function ProductGrid() {
