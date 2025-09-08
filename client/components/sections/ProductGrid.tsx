@@ -138,7 +138,7 @@ export default function ProductGrid() {
           <article key={p.id} className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md">
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
               {p.imageUrl ? (
-                <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover" />
+                <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105" />
               ) : (
                 <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
               )}
