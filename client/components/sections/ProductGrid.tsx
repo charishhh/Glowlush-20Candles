@@ -20,6 +20,7 @@ const products: Product[] = [
     badge: "Bestseller",
     description: "Sunflower shaped melts",
     imagePosition: "16% 8%",
+    imageUrl:"https://images.search.yahoo.com/images/view;_ylt=Awr93m44db5oHz0g5zOJzbkF;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzI3MTllODljMjFmNzIwODI4ZTNjNTNkNTEyMzFiM2E4BGdwb3MDNARpdANiaW5n?back=https%3A%2F%2Fimages.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dsunflower%2Bcandles%26type%3DE210US1274G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D4&w=800&h=800&imgurl=i.etsystatic.com%2F40670920%2Fr%2Fil%2Fd7ce27%2F4776046749%2Fil_800x800.4776046749_5455.jpg&rurl=https%3A%2F%2Fwww.etsy.com%2Fmarket%2Fsunflower_candles&size=93KB&p=sunflower+candles&oid=2719e89c21f720828e3c53d51231b3a8&fr2=piv-web&fr=mcafee&tt=Sunflower+Candles+-+Etsy&b=0&ni=21&no=4&ts=&tab=organic&sigr=7p885k6IlbUd&sigb=tV.PE2aW2fef&sigi=ojbYxAr.YdYj&sigt=4V56W2g3qtOG&.crumb=H6qlJa6SSFv&fr=mcafee&fr2=piv-web&type=E210US1274G0"
   },
   {
     id: "rose-blossom",
