@@ -136,22 +136,24 @@ export default function ProductGrid() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {slots.filter((s) => !!s.imageUrl).map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-3 shadow-sm transition hover:shadow-md">
-            <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
-              {p.imageUrl ? (
-                <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105" />
-              ) : (
-                <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
-              )}
+            <div className="relative overflow-hidden rounded-xl bg-muted flex items-center justify-center" style={{paddingTop: '100%'}}>
+              <div className="absolute inset-0">
+                {p.imageUrl ? (
+                  <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105" />
+                ) : (
+                  <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
+                )}
 
-              {p.badge && (
-                <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                  {p.badge}
-                </span>
-              )}
+                {p.badge && (
+                  <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
+                    {p.badge}
+                  </span>
+                )}
 
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-lg bg-background/70 px-2 py-1 text-sm backdrop-blur-sm ring-1 ring-border">
-                <span className="font-medium text-sm truncate max-w-[68%]">{p.name || "Add name"}</span>
-                <span className="rounded-md bg-primary px-2 py-0.5 text-xs md:text-sm font-semibold">{p.price ? `₹${p.price}` : "Add price"}</span>
+                <div className="absolute left-3 right-3 bottom-3 flex items-center justify-between rounded-lg bg-background/70 px-2 py-1 text-sm backdrop-blur-sm ring-1 ring-border">
+                  <span className="font-medium text-sm truncate max-w-[70%]">{p.name || "Add name"}</span>
+                  <span className="rounded-md bg-primary px-2 py-0.5 text-xs md:text-sm font-semibold">{p.price ? `₹${p.price}` : "Add price"}</span>
+                </div>
               </div>
             </div>
 
