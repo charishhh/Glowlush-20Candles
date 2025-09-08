@@ -133,7 +133,7 @@ export default function ProductGrid() {
         <p className="mt-3 text-muted-foreground">Simple, elegant designs inspired by your reference catalog — now with clear pricing.</p>
       </div>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {slots.filter((s) => !!s.imageUrl).map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-6 shadow-sm transition hover:shadow-md">
             <div className="relative overflow-hidden rounded-xl aspect-square bg-muted flex items-center justify-center">
