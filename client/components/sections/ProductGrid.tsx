@@ -123,7 +123,14 @@ export default function ProductGrid() {
         imageUrl: prod.imageUrl || null,
       };
     }
-    return { id: i + 1, name: "", price: "", badge: null, description: null, imageUrl: extra || null };
+    return {
+      id: i + 1,
+      name: extra ? extraNames[i - products.length] || "" : "",
+      price: "",
+      badge: null,
+      description: null,
+      imageUrl: extra || null,
+    };
   });
 
   const [slots, setSlots] = useState<Slot[]>(initial);
