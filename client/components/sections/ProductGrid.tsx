@@ -195,43 +195,7 @@ export default function ProductGrid() {
     setSlots((s) => s.map((x) => (x.id === id ? { ...x, [key]: value } : x)));
   };
 
-  const exportJSON = () => {
-    const out = slots.map((s) => ({ id: s.id, name: s.name, price: s.price, imageUrl: s.imageUrl, badge: s.badge, description: s.description }));
-    try {
-      navigator.clipboard?.writeText(JSON.stringify(out, null, 2));
-      alert("Copied product slots JSON to clipboard.");
-    } catch (e) {
-      // fallback
-      const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "product-slots.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-  };
 
-  const importJSON = () => {
-    const raw = prompt("Paste product slots JSON here to import:");
-    if (!raw) return;
-    try {
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) throw new Error("JSON must be an array of slots");
-      const normalized: Slot[] = parsed.map((p: any, idx: number) => ({
-        id: typeof p.id === "number" ? p.id : idx + 1,
-        name: String(p.name ?? ""),
-        price: String(p.price ?? ""),
-        badge: p.badge ?? null,
-        description: p.description ?? null,
-        imageUrl: p.imageUrl ?? null,
-      }));
-      setSlots(normalized);
-      alert("Imported product slots.");
-    } catch (err: any) {
-      alert("Failed to import JSON: " + (err?.message || String(err)));
-    }
-  };
 
   const resetDefaults = () => {
     if (!confirm("Reset product slots to defaults? This will overwrite current changes.")) return;
@@ -295,8 +259,6 @@ export default function ProductGrid() {
       </div>
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <button onClick={exportJSON} className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90">Export JSON</button>
-        <button onClick={importJSON} className="inline-flex h-11 items-center gap-2 rounded-md bg-secondary px-4 text-sm font-semibold text-secondary-foreground shadow-sm hover:opacity-90">Import JSON</button>
         <button onClick={resetDefaults} className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold">Reset to defaults</button>
       </div>
 
