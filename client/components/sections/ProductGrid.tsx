@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Product = {
   id: string;
@@ -21,7 +21,8 @@ const products: Product[] = [
     badge: "Bestseller",
     description: "Sunflower shaped melts",
     imagePosition: "16% 8%",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F4912c2a7aa7b4ed7a9767f8cd3ee4246?format=webp&width=800"
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F4912c2a7aa7b4ed7a9767f8cd3ee4246?format=webp&width=800",
   },
   {
     id: "rose-blossom",
@@ -137,41 +138,110 @@ type Slot = {
   imageUrl?: string | null;
 };
 
-export default function ProductGrid() {
-  // initialize 20 slots: prefill with existing products where available
-  const initial: Slot[] = Array.from({ length: 20 }).map((_, i) => {
+const STORAGE_KEY = "product_slots_v1";
+
+function makeInitialSlots(): Slot[] {
+  const total = Math.max(20, products.length + extraImages.length);
+  return Array.from({ length: total }).map((_, i) => {
     const prod = products[i];
-    const extra = extraImages[i - products.length];
+    const extraIndex = i - products.length;
+    const extra = extraImages[extraIndex];
     if (prod) {
       return {
         id: i + 1,
         name: prod.name,
-        price: String(prod.price),
+        price: String(prod.price ?? ""),
         badge: prod.badge || null,
         description: prod.description || null,
         imageUrl: prod.imageUrl || null,
       };
     }
+
     return {
       id: i + 1,
-      name: extra ? extraNames[i - products.length] || "" : "",
+      name: extra ? extraNames[extraIndex] || "" : "",
       price: "",
       badge: null,
       description: null,
       imageUrl: extra || null,
     };
   });
+}
 
-  const [slots, setSlots] = useState<Slot[]>(initial);
+export default function ProductGrid() {
+  const initial = makeInitialSlots();
+  const [slots, setSlots] = useState<Slot[]>(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {
+      // fallthrough to defaults
+    }
+    return initial;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(slots));
+    } catch (e) {
+      // ignore storage errors
+    }
+  }, [slots]);
 
   const update = (id: number, key: keyof Slot, value: string) => {
     setSlots((s) => s.map((x) => (x.id === id ? { ...x, [key]: value } : x)));
   };
 
   const exportJSON = () => {
-    const out = slots.map((s) => ({ id: s.id, name: s.name, price: s.price }));
-    navigator.clipboard?.writeText(JSON.stringify(out, null, 2));
-    alert("Copied product slots JSON to clipboard.");
+    const out = slots.map((s) => ({ id: s.id, name: s.name, price: s.price, imageUrl: s.imageUrl, badge: s.badge, description: s.description }));
+    try {
+      navigator.clipboard?.writeText(JSON.stringify(out, null, 2));
+      alert("Copied product slots JSON to clipboard.");
+    } catch (e) {
+      // fallback
+      const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "product-slots.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const importJSON = () => {
+    const raw = prompt("Paste product slots JSON here to import:");
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) throw new Error("JSON must be an array of slots");
+      const normalized: Slot[] = parsed.map((p: any, idx: number) => ({
+        id: typeof p.id === "number" ? p.id : idx + 1,
+        name: String(p.name ?? ""),
+        price: String(p.price ?? ""),
+        badge: p.badge ?? null,
+        description: p.description ?? null,
+        imageUrl: p.imageUrl ?? null,
+      }));
+      setSlots(normalized);
+      alert("Imported product slots.");
+    } catch (err: any) {
+      alert("Failed to import JSON: " + (err?.message || String(err)));
+    }
+  };
+
+  const resetDefaults = () => {
+    if (!confirm("Reset product slots to defaults? This will overwrite current changes.")) return;
+    const def = makeInitialSlots();
+    setSlots(def);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      // ignore
+    }
   };
 
   return (
@@ -181,10 +251,10 @@ export default function ProductGrid() {
         <p className="mt-3 text-muted-foreground">Simple, elegant designs inspired by your reference catalog — now with clear pricing.</p>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {slots.filter((s) => !!s.imageUrl).map((p) => (
           <article key={p.id} className="group rounded-2xl border bg-card p-3 shadow-sm transition hover:shadow-md">
-            <div className="relative overflow-hidden rounded-xl bg-muted flex items-center justify-center" style={{paddingTop: '100%'}}>
+            <div className="relative overflow-hidden rounded-xl bg-muted flex items-center justify-center" style={{ paddingTop: "100%" }}>
               <div className="absolute inset-0">
                 {p.imageUrl ? (
                   <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105" />
@@ -224,8 +294,10 @@ export default function ProductGrid() {
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-3">
-        <button onClick={exportJSON} className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90">Export Slots</button>
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <button onClick={exportJSON} className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90">Export JSON</button>
+        <button onClick={importJSON} className="inline-flex h-11 items-center gap-2 rounded-md bg-secondary px-4 text-sm font-semibold text-secondary-foreground shadow-sm hover:opacity-90">Import JSON</button>
+        <button onClick={resetDefaults} className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold">Reset to defaults</button>
       </div>
 
       <p className="mt-8 text-center text-sm text-muted-foreground">Note: Custom scents, colors and bulk pricing available on request.</p>
