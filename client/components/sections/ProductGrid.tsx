@@ -197,10 +197,13 @@ export default function ProductGrid() {
     setSlots((s) => s.map((x) => (x.id === id ? { ...x, [key]: value } : x)));
   };
 
-
-
   const resetDefaults = () => {
-    if (!confirm("Reset product slots to defaults? This will overwrite current changes.")) return;
+    if (
+      !confirm(
+        "Reset product slots to defaults? This will overwrite current changes.",
+      )
+    )
+      return;
     const def = makeInitialSlots();
     setSlots(def);
     try {
@@ -213,71 +216,128 @@ export default function ProductGrid() {
   return (
     <section id="products" className="container py-16 md:py-24">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl tracking-tight md:text-4xl">Handmade Fancy Scented Candles</h2>
-        <p className="mt-3 text-muted-foreground">Simple, elegant designs inspired by your reference catalog — now with clear pricing.</p>
+        <h2 className="font-display text-3xl tracking-tight md:text-4xl">
+          Handmade Fancy Scented Candles
+        </h2>
+        <p className="mt-3 text-muted-foreground">
+          Simple, elegant designs inspired by your reference catalog — now with
+          clear pricing.
+        </p>
       </div>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {slots.filter((s) => !!s.imageUrl).slice(1).map((p) => (
-          <article key={p.id} className="group rounded-2xl border bg-card p-3 shadow-sm transition hover:shadow-md">
-            <div className="relative overflow-hidden rounded-xl bg-muted flex items-center justify-center" style={{ paddingTop: "100%" }}>
-              <div className="absolute inset-0">
-                {p.imageUrl ? (
-                  <img src={p.imageUrl} alt={p.name || `product-${p.id}`} className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105" />
-                ) : (
-                  <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
-                )}
+        {slots
+          .filter((s) => !!s.imageUrl)
+          .slice(1)
+          .map((p) => (
+            <article
+              key={p.id}
+              className="group rounded-2xl border bg-card p-3 shadow-sm transition hover:shadow-md"
+            >
+              <div
+                className="relative overflow-hidden rounded-xl bg-muted flex items-center justify-center"
+                style={{ paddingTop: "100%" }}
+              >
+                <div className="absolute inset-0">
+                  {p.imageUrl ? (
+                    <img
+                      src={p.imageUrl}
+                      alt={p.name || `product-${p.id}`}
+                      className="h-full w-full object-cover object-center transition-transform duration-200 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="h-full w-full rounded-xl border-2 border-dashed border-border bg-background/50" />
+                  )}
 
-                {p.badge && (
-                  <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                    {p.badge}
-                  </span>
-                )}
+                  {p.badge && (
+                    <span className="absolute left-2 top-2 rounded-full bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
+                      {p.badge}
+                    </span>
+                  )}
 
-                <div className="absolute left-3 right-3 bottom-3 flex items-center justify-between rounded-lg bg-background/70 px-2 py-1 text-sm backdrop-blur-sm ring-1 ring-border">
-                  <span className="font-medium text-sm truncate max-w-[70%]">{p.name || "Add name"}</span>
-                  <span className="rounded-md bg-primary px-2 py-0.5 text-xs md:text-sm font-semibold">{p.price ? `₹${p.price}` : "Add price"}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-3">
-              {editorOpenId === p.id ? (
-                <div className="space-y-1">
-                  <label className="block text-xs">
-                    <span className="text-muted-foreground">Name</span>
-                    <input value={p.name} onChange={(e) => update(p.id, "name", e.target.value)} placeholder="Product name" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
-                  </label>
-
-                  <label className="block text-xs">
-                    <span className="text-muted-foreground">Price (INR)</span>
-                    <input value={p.price} onChange={(e) => update(p.id, "price", e.target.value)} placeholder="e.g. 199" inputMode="numeric" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
-                  </label>
-
-                  <div className="mt-2 flex gap-2">
-                    <button onClick={() => setEditorOpenId(null)} className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground">Save</button>
-                    <button onClick={() => setEditorOpenId(null)} className="inline-flex h-8 items-center rounded-md border px-3 text-xs font-semibold">Cancel</button>
+                  <div className="absolute left-3 right-3 bottom-3 flex items-center justify-between rounded-lg bg-background/70 px-2 py-1 text-sm backdrop-blur-sm ring-1 ring-border">
+                    <span className="font-medium text-sm truncate max-w-[70%]">
+                      {p.name || "Add name"}
+                    </span>
+                    <span className="rounded-md bg-primary px-2 py-0.5 text-xs md:text-sm font-semibold">
+                      {p.price ? `₹${p.price}` : "Add price"}
+                    </span>
                   </div>
                 </div>
-              ) : (
-                <button onClick={() => setEditorOpenId(p.id)} className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold">
-                  {!p.name || !p.price ? "Add name & price" : "Edit name & price"}
-                </button>
-              )}
-            </div>
+              </div>
 
-            {p.description && (
-              <p className="mt-4 text-base text-muted-foreground">{p.description}</p>
-            )}
-          </article>
-        ))}
+              <div className="mt-3">
+                {editorOpenId === p.id ? (
+                  <div className="space-y-1">
+                    <label className="block text-xs">
+                      <span className="text-muted-foreground">Name</span>
+                      <input
+                        value={p.name}
+                        onChange={(e) => update(p.id, "name", e.target.value)}
+                        placeholder="Product name"
+                        className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
+                      />
+                    </label>
+
+                    <label className="block text-xs">
+                      <span className="text-muted-foreground">Price (INR)</span>
+                      <input
+                        value={p.price}
+                        onChange={(e) => update(p.id, "price", e.target.value)}
+                        placeholder="e.g. 199"
+                        inputMode="numeric"
+                        className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
+                      />
+                    </label>
+
+                    <div className="mt-2 flex gap-2">
+                      <button
+                        onClick={() => setEditorOpenId(null)}
+                        className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={() => setEditorOpenId(null)}
+                        className="inline-flex h-8 items-center rounded-md border px-3 text-xs font-semibold"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setEditorOpenId(p.id)}
+                    className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold"
+                  >
+                    {!p.name || !p.price
+                      ? "Add name & price"
+                      : "Edit name & price"}
+                  </button>
+                )}
+              </div>
+
+              {p.description && (
+                <p className="mt-4 text-base text-muted-foreground">
+                  {p.description}
+                </p>
+              )}
+            </article>
+          ))}
       </div>
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <button onClick={resetDefaults} className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold">Reset to defaults</button>
+        <button
+          onClick={resetDefaults}
+          className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold"
+        >
+          Reset to defaults
+        </button>
       </div>
 
-      <p className="mt-8 text-center text-sm text-muted-foreground">Note: Custom scents, colors and bulk pricing available on request.</p>
+      <p className="mt-8 text-center text-sm text-muted-foreground">
+        Note: Custom scents, colors and bulk pricing available on request.
+      </p>
     </section>
   );
 }
