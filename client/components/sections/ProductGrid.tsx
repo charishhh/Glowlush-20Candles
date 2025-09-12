@@ -183,6 +183,8 @@ export default function ProductGrid() {
     return initial;
   });
 
+  const [editorOpenId, setEditorOpenId] = useState<number | null>(null);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(slots));
@@ -239,16 +241,29 @@ export default function ProductGrid() {
               </div>
             </div>
 
-            <div className="mt-3 space-y-1">
-              <label className="block text-xs">
-                <span className="text-muted-foreground">Name</span>
-                <input value={p.name} onChange={(e) => update(p.id, "name", e.target.value)} placeholder="Product name" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
-              </label>
+            <div className="mt-3">
+              {editorOpenId === p.id ? (
+                <div className="space-y-1">
+                  <label className="block text-xs">
+                    <span className="text-muted-foreground">Name</span>
+                    <input value={p.name} onChange={(e) => update(p.id, "name", e.target.value)} placeholder="Product name" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
 
-              <label className="block text-xs">
-                <span className="text-muted-foreground">Price (INR)</span>
-                <input value={p.price} onChange={(e) => update(p.id, "price", e.target.value)} placeholder="e.g. 199" inputMode="numeric" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
-              </label>
+                  <label className="block text-xs">
+                    <span className="text-muted-foreground">Price (INR)</span>
+                    <input value={p.price} onChange={(e) => update(p.id, "price", e.target.value)} placeholder="e.g. 199" inputMode="numeric" className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
+
+                  <div className="mt-2 flex gap-2">
+                    <button onClick={() => setEditorOpenId(null)} className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground">Save</button>
+                    <button onClick={() => setEditorOpenId(null)} className="inline-flex h-8 items-center rounded-md border px-3 text-xs font-semibold">Cancel</button>
+                  </div>
+                </div>
+              ) : (
+                <button onClick={() => setEditorOpenId(p.id)} className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold">
+                  {!p.name || !p.price ? "Add name & price" : "Edit name & price"}
+                </button>
+              )}
             </div>
 
             {p.description && (
