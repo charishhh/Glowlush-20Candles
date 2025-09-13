@@ -197,6 +197,11 @@ export default function ProductGrid() {
     setSlots((s) => s.map((x) => (x.id === id ? { ...x, [key]: value } : x)));
   };
 
+  const isHiddenName = (n: string) => {
+    const key = (n || "").toLowerCase().trim();
+    return key === "rose gift pair" || key === "heart textured candles" || key === "heart texture";
+  };
+
   const resetDefaults = () => {
     if (
       !confirm(
@@ -227,7 +232,7 @@ export default function ProductGrid() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {slots
-          .filter((s) => !!s.imageUrl)
+          .filter((s) => !!s.imageUrl && !isHiddenName(s.name))
           .slice(1)
           .map((p) => (
             <article
