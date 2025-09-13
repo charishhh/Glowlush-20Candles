@@ -30,15 +30,6 @@ export default function SiteFooter() {
               +91 98808 85792
             </a>
           </p>
-          <p>
-            Email:{" "}
-            <a
-              className="underline decoration-primary/40 underline-offset-4"
-              href="mailto:hello@glowlushcandles.com"
-            >
-              hello@glowlushcandles.com
-            </a>
-          </p>
           <p className="text-muted-foreground">
             Open to bulk and custom orders.
           </p>
