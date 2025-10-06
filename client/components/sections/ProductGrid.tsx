@@ -209,7 +209,10 @@ export default function ProductGrid() {
   }, []);
 
   useEffect(() => {
-    if (!isAdmin) {
+    if (isAdmin) {
+      setAdminPassword("");
+      setAdminError("");
+    } else {
       setEditorOpenId(null);
     }
   }, [isAdmin]);
