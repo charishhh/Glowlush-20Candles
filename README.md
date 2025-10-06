@@ -10,9 +10,7 @@ Welcome to Glowlush Candles! We hand-pour artisanal, beautifully scented candles
 
 Get a quick look at the fancy, sculpted candles we offer:
 
-!["C:\Users\chari\OneDrive\Pictures\Screenshots 1\Screenshot 2025-10-06 231320.png".](https://glowlushcandles.netlify.app/NK_candles_pic.png)
-
----
+at:[https://glowlushcandles.netlify.app/
 
 ### ✨ Our Philosophy
 
@@ -44,7 +42,7 @@ Stay cozy and follow us for new scents, seasonal specials, and updates!
 | Platform | Link |
 | :--- | :--- |
 | **Website** | [https://glowlushcandles.netlify.app/](https://glowlushcandles.netlify.app/) |
-| **Instagram** | []
+| **Instagram** | [https://www.instagram.com/glowlush_candles/]
 
 ---
 *Thank you for supporting our small, handmade business.*
