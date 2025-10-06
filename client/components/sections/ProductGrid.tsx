@@ -226,29 +226,34 @@ export default function ProductGrid() {
     return key === "rose gift pair" || key === "heart textured candles" || key === "heart texture";
   };
 
-  const handleAdminLogin = () => {
-    if (!ADMIN_TOKEN) {
-      alert("Admin access is not configured. Set VITE_ADMIN_TOKEN in the environment.");
+  const validatePassword = (value: string) => value.trim().length >= MIN_PASSWORD_LENGTH;
+
+  const handleAdminLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!validatePassword(adminPassword)) {
+      setAdminError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
       return;
     }
-    const input = prompt("Enter admin passcode:");
-    if (input === null) return;
-    if (input === ADMIN_TOKEN) {
-      setIsAdmin(true);
-      try {
-        localStorage.setItem(ADMIN_STORAGE_KEY, "true");
-      } catch (e) {
-        // ignore
-      }
-      alert("Admin editing enabled.");
-    } else {
-      alert("Incorrect passcode.");
+    if (adminPassword !== ADMIN_PASSWORD) {
+      setAdminError("Incorrect password.");
+      return;
     }
+    setIsAdmin(true);
+    setAdminPassword("");
+    setAdminError("");
+    try {
+      localStorage.setItem(ADMIN_STORAGE_KEY, "true");
+    } catch (e) {
+      // ignore
+    }
+    alert("Admin editing enabled.");
   };
 
   const handleAdminLogout = () => {
     setIsAdmin(false);
     setEditorOpenId(null);
+    setAdminPassword("");
+    setAdminError("");
     try {
       localStorage.removeItem(ADMIN_STORAGE_KEY);
     } catch (e) {
