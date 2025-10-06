@@ -10,8 +10,7 @@ type Product = {
   imageUrl?: string;
 };
 
-const IMAGE_URL =
-  "https://cdn.builder.io/api/v1/image/assets%2Ff1bf68ad12a64d17b2ad0d87413795f6%2F3d3b460c2e0e473aad2b7313150e262b?format=webp&width=800";
+const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN ?? "";
 
 const products: Product[] = [
   {
@@ -139,6 +138,7 @@ type Slot = {
 };
 
 const STORAGE_KEY = "product_slots_v1";
+const ADMIN_STORAGE_KEY = "product_grid_admin_access";
 
 function makeInitialSlots(): Slot[] {
   const total = Math.max(20, products.length + extraImages.length);
@@ -183,6 +183,7 @@ export default function ProductGrid() {
     return initial;
   });
 
+  const [isAdmin, setIsAdmin] = useState(false);
   const [editorOpenId, setEditorOpenId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -193,6 +194,22 @@ export default function ProductGrid() {
     }
   }, [slots]);
 
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(ADMIN_STORAGE_KEY) === "true") {
+        setIsAdmin(true);
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isAdmin) {
+      setEditorOpenId(null);
+    }
+  }, [isAdmin]);
+
   const update = (id: number, key: keyof Slot, value: string) => {
     setSlots((s) => s.map((x) => (x.id === id ? { ...x, [key]: value } : x)));
   };
@@ -200,6 +217,36 @@ export default function ProductGrid() {
   const isHiddenName = (n: string) => {
     const key = (n || "").toLowerCase().trim();
     return key === "rose gift pair" || key === "heart textured candles" || key === "heart texture";
+  };
+
+  const handleAdminLogin = () => {
+    if (!ADMIN_TOKEN) {
+      alert("Admin access is not configured. Set VITE_ADMIN_TOKEN in the environment.");
+      return;
+    }
+    const input = prompt("Enter admin passcode:");
+    if (input === null) return;
+    if (input === ADMIN_TOKEN) {
+      setIsAdmin(true);
+      try {
+        localStorage.setItem(ADMIN_STORAGE_KEY, "true");
+      } catch (e) {
+        // ignore
+      }
+      alert("Admin editing enabled.");
+    } else {
+      alert("Incorrect passcode.");
+    }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdmin(false);
+    setEditorOpenId(null);
+    try {
+      localStorage.removeItem(ADMIN_STORAGE_KEY);
+    } catch (e) {
+      // ignore
+    }
   };
 
   const resetDefaults = () => {
@@ -228,6 +275,24 @@ export default function ProductGrid() {
           Simple, elegant designs inspired by your reference catalog — now with
           clear pricing.
         </p>
+      </div>
+
+      <div className="mt-6 flex justify-end">
+        {isAdmin ? (
+          <button
+            onClick={handleAdminLogout}
+            className="inline-flex h-9 items-center rounded-md border px-3 text-sm font-semibold"
+          >
+            Disable admin editing
+          </button>
+        ) : (
+          <button
+            onClick={handleAdminLogin}
+            className="inline-flex h-9 items-center rounded-md border px-3 text-sm font-semibold"
+          >
+            Admin login
+          </button>
+        )}
       </div>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -272,53 +337,59 @@ export default function ProductGrid() {
               </div>
 
               <div className="mt-3">
-                {editorOpenId === p.id ? (
-                  <div className="space-y-1">
-                    <label className="block text-xs">
-                      <span className="text-muted-foreground">Name</span>
-                      <input
-                        value={p.name}
-                        onChange={(e) => update(p.id, "name", e.target.value)}
-                        placeholder="Product name"
-                        className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
-                      />
-                    </label>
+                {isAdmin ? (
+                  editorOpenId === p.id ? (
+                    <div className="space-y-1">
+                      <label className="block text-xs">
+                        <span className="text-muted-foreground">Name</span>
+                        <input
+                          value={p.name}
+                          onChange={(e) => update(p.id, "name", e.target.value)}
+                          placeholder="Product name"
+                          className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
+                        />
+                      </label>
 
-                    <label className="block text-xs">
-                      <span className="text-muted-foreground">Price (INR)</span>
-                      <input
-                        value={p.price}
-                        onChange={(e) => update(p.id, "price", e.target.value)}
-                        placeholder="e.g. 199"
-                        inputMode="numeric"
-                        className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
-                      />
-                    </label>
+                      <label className="block text-xs">
+                        <span className="text-muted-foreground">Price (INR)</span>
+                        <input
+                          value={p.price}
+                          onChange={(e) => update(p.id, "price", e.target.value)}
+                          placeholder="e.g. 199"
+                          inputMode="numeric"
+                          className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
+                        />
+                      </label>
 
-                    <div className="mt-2 flex gap-2">
-                      <button
-                        onClick={() => setEditorOpenId(null)}
-                        className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground"
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => setEditorOpenId(null)}
-                        className="inline-flex h-8 items-center rounded-md border px-3 text-xs font-semibold"
-                      >
-                        Cancel
-                      </button>
+                      <div className="mt-2 flex gap-2">
+                        <button
+                          onClick={() => setEditorOpenId(null)}
+                          className="inline-flex h-8 items-center rounded-md bg-primary px-3 text-xs font-semibold text-primary-foreground"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => setEditorOpenId(null)}
+                          className="inline-flex h-8 items-center rounded-md border px-3 text-xs font-semibold"
+                        >
+                          Cancel
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <button
+                      onClick={() => setEditorOpenId(p.id)}
+                      className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold"
+                    >
+                      {!p.name || !p.price
+                        ? "Add name & price"
+                        : "Edit name & price"}
+                    </button>
+                  )
                 ) : (
-                  <button
-                    onClick={() => setEditorOpenId(p.id)}
-                    className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold"
-                  >
-                    {!p.name || !p.price
-                      ? "Add name & price"
-                      : "Edit name & price"}
-                  </button>
+                  <p className="text-center text-xs text-muted-foreground">
+                    Admin login required to edit.
+                  </p>
                 )}
               </div>
 
@@ -331,14 +402,16 @@ export default function ProductGrid() {
           ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <button
-          onClick={resetDefaults}
-          className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold"
-        >
-          Reset to defaults
-        </button>
-      </div>
+      {isAdmin && (
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={resetDefaults}
+            className="inline-flex h-11 items-center gap-2 rounded-md border px-4 text-sm font-semibold"
+          >
+            Reset to defaults
+          </button>
+        </div>
+      )}
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         Note: Custom scents, colors and bulk pricing available on request.
