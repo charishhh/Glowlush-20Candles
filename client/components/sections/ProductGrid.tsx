@@ -298,12 +298,42 @@ export default function ProductGrid() {
             Disable admin editing
           </button>
         ) : (
-          <button
-            onClick={handleAdminLogin}
-            className="inline-flex h-9 items-center rounded-md border px-3 text-sm font-semibold"
+          <form
+            onSubmit={handleAdminLoginSubmit}
+            className="w-full max-w-sm space-y-3 rounded-xl border bg-card p-4 shadow-sm"
           >
-            Admin login
-          </button>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold">Admin access</h3>
+              <span className="text-xs text-muted-foreground">Restricted</span>
+            </div>
+            <label className="block text-xs">
+              <span className="text-muted-foreground">Password</span>
+              <input
+                type="password"
+                value={adminPassword}
+                onChange={(e) => {
+                  setAdminPassword(e.target.value);
+                  if (adminError) setAdminError("");
+                }}
+                className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
+                autoComplete="current-password"
+              />
+            </label>
+            {adminError && (
+              <p className="text-xs text-destructive">{adminError}</p>
+            )}
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-muted-foreground">
+                Password must be at least {MIN_PASSWORD_LENGTH} characters.
+              </p>
+              <button
+                type="submit"
+                className="inline-flex h-9 items-center rounded-md bg-primary px-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
+              >
+                Unlock editing
+              </button>
+            </div>
+          </form>
         )}
       </div>
 
