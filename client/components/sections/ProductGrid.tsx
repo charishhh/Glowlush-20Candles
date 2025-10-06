@@ -440,7 +440,7 @@ export default function ProductGrid() {
             <div className="w-full max-w-xs space-y-3 rounded-xl border bg-background p-4">
               <div>
                 <h4 className="text-sm font-semibold">Upload new PDF</h4>
-                <p className="text-xs text-muted-foreground">Max size {Math.round(MAX_PDF_SIZE / 1024 / 1024)}MB.</p>
+                <p className="text-xs text-muted-foreground">Max size {MAX_PDF_MB}MB.</p>
               </div>
               <label className="block text-xs">
                 <span className="text-muted-foreground">Select PDF</span>
