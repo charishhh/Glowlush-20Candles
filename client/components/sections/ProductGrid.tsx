@@ -139,6 +139,11 @@ type Slot = {
   imageUrl?: string | null;
 };
 
+type PdfAsset = {
+  name: string;
+  dataUrl: string;
+};
+
 const STORAGE_KEY = "product_slots_v1";
 const ADMIN_STORAGE_KEY = "product_grid_admin_access";
 
