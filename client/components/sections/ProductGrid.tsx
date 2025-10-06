@@ -187,6 +187,8 @@ export default function ProductGrid() {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [editorOpenId, setEditorOpenId] = useState<number | null>(null);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminError, setAdminError] = useState("");
 
   useEffect(() => {
     try {
