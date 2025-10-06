@@ -223,15 +223,22 @@ export default function ProductGrid() {
 
   const isHiddenName = (n: string) => {
     const key = (n || "").toLowerCase().trim();
-    return key === "rose gift pair" || key === "heart textured candles" || key === "heart texture";
+    return (
+      key === "rose gift pair" ||
+      key === "heart textured candles" ||
+      key === "heart texture"
+    );
   };
 
-  const validatePassword = (value: string) => value.trim().length >= MIN_PASSWORD_LENGTH;
+  const validatePassword = (value: string) =>
+    value.trim().length >= MIN_PASSWORD_LENGTH;
 
   const handleAdminLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validatePassword(adminPassword)) {
-      setAdminError(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+      setAdminError(
+        `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`,
+      );
       return;
     }
     if (adminPassword !== ADMIN_PASSWORD) {
@@ -393,10 +400,14 @@ export default function ProductGrid() {
                       </label>
 
                       <label className="block text-xs">
-                        <span className="text-muted-foreground">Price (INR)</span>
+                        <span className="text-muted-foreground">
+                          Price (INR)
+                        </span>
                         <input
                           value={p.price}
-                          onChange={(e) => update(p.id, "price", e.target.value)}
+                          onChange={(e) =>
+                            update(p.id, "price", e.target.value)
+                          }
                           placeholder="e.g. 199"
                           inputMode="numeric"
                           className="mt-1 block w-full rounded-md border border-input bg-background px-2 py-1 text-xs outline-none focus:ring-2 focus:ring-primary/30"
