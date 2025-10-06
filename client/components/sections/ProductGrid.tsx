@@ -202,7 +202,11 @@ export default function ProductGrid() {
       const raw = localStorage.getItem(PDF_STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed.name === "string" && typeof parsed.dataUrl === "string") {
+        if (
+          parsed &&
+          typeof parsed.name === "string" &&
+          typeof parsed.dataUrl === "string"
+        ) {
           return parsed;
         }
       }
@@ -417,7 +421,8 @@ export default function ProductGrid() {
           <div className="space-y-2">
             <h3 className="font-semibold">Catalog PDF</h3>
             <p className="text-sm text-muted-foreground max-w-md">
-              Download the latest product catalog to view detailed pricing, scent notes, and order information.
+              Download the latest product catalog to view detailed pricing,
+              scent notes, and order information.
             </p>
             {pdfAsset ? (
               <div className="flex flex-col gap-2">
@@ -428,7 +433,9 @@ export default function ProductGrid() {
                 >
                   Download {pdfAsset.name}
                 </a>
-                <span className="text-xs text-muted-foreground">Last uploaded PDF is available for everyone.</span>
+                <span className="text-xs text-muted-foreground">
+                  Last uploaded PDF is available for everyone.
+                </span>
               </div>
             ) : (
               <p className="text-sm text-muted-foreground">
@@ -440,7 +447,9 @@ export default function ProductGrid() {
             <div className="w-full max-w-xs space-y-3 rounded-xl border bg-background p-4">
               <div>
                 <h4 className="text-sm font-semibold">Upload new PDF</h4>
-                <p className="text-xs text-muted-foreground">Max size {MAX_PDF_MB}MB.</p>
+                <p className="text-xs text-muted-foreground">
+                  Max size {MAX_PDF_MB}MB.
+                </p>
               </div>
               <label className="block text-xs">
                 <span className="text-muted-foreground">Select PDF</span>
@@ -451,7 +460,9 @@ export default function ProductGrid() {
                   className="mt-1 block w-full text-xs"
                 />
               </label>
-              {pdfError && <p className="text-xs text-destructive">{pdfError}</p>}
+              {pdfError && (
+                <p className="text-xs text-destructive">{pdfError}</p>
+              )}
               {pdfAsset && (
                 <button
                   type="button"
