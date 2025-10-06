@@ -222,6 +222,18 @@ export default function ProductGrid() {
 
   useEffect(() => {
     try {
+      if (pdfAsset) {
+        localStorage.setItem(PDF_STORAGE_KEY, JSON.stringify(pdfAsset));
+      } else {
+        localStorage.removeItem(PDF_STORAGE_KEY);
+      }
+    } catch (e) {
+      // ignore storage errors
+    }
+  }, [pdfAsset]);
+
+  useEffect(() => {
+    try {
       if (localStorage.getItem(ADMIN_STORAGE_KEY) === "true") {
         setIsAdmin(true);
       }
