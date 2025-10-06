@@ -11,6 +11,8 @@ type Product = {
 };
 
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN ?? "";
+const ADMIN_PASSWORD = ADMIN_TOKEN || "candles123";
+const MIN_PASSWORD_LENGTH = 6;
 
 const products: Product[] = [
   {
