@@ -196,6 +196,21 @@ export default function ProductGrid() {
   const [editorOpenId, setEditorOpenId] = useState<number | null>(null);
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState("");
+  const [pdfAsset, setPdfAsset] = useState<PdfAsset | null>(() => {
+    try {
+      const raw = localStorage.getItem(PDF_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.name === "string" && typeof parsed.dataUrl === "string") {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      // ignore malformed data
+    }
+    return null;
+  });
+  const [pdfError, setPdfError] = useState("");
 
   useEffect(() => {
     try {
