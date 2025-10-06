@@ -302,6 +302,39 @@ export default function ProductGrid() {
     }
   };
 
+  const handlePdfUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    if (file.type !== "application/pdf") {
+      setPdfError("Please select a PDF file.");
+      return;
+    }
+    if (file.size > MAX_PDF_SIZE) {
+      setPdfError("PDF is too large. Limit is 2MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === "string") {
+        setPdfAsset({ name: file.name, dataUrl: result });
+        setPdfError("");
+      } else {
+        setPdfError("Could not read PDF. Try again.");
+      }
+    };
+    reader.onerror = () => {
+      setPdfError("Failed to read PDF file.");
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handlePdfRemove = () => {
+    setPdfAsset(null);
+    setPdfError("");
+  };
+
   const resetDefaults = () => {
     if (
       !confirm(
