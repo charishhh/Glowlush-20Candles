@@ -411,6 +411,60 @@ export default function ProductGrid() {
         )}
       </div>
 
+      <div className="mt-10 rounded-2xl border bg-muted/30 p-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+          <div className="space-y-2">
+            <h3 className="font-semibold">Catalog PDF</h3>
+            <p className="text-sm text-muted-foreground max-w-md">
+              Download the latest product catalog to view detailed pricing, scent notes, and order information.
+            </p>
+            {pdfAsset ? (
+              <div className="flex flex-col gap-2">
+                <a
+                  href={pdfAsset.dataUrl}
+                  download={pdfAsset.name}
+                  className="inline-flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-90"
+                >
+                  Download {pdfAsset.name}
+                </a>
+                <span className="text-xs text-muted-foreground">Last uploaded PDF is available for everyone.</span>
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                No catalog uploaded yet.
+              </p>
+            )}
+          </div>
+          {isAdmin && (
+            <div className="w-full max-w-xs space-y-3 rounded-xl border bg-background p-4">
+              <div>
+                <h4 className="text-sm font-semibold">Upload new PDF</h4>
+                <p className="text-xs text-muted-foreground">Max size {Math.round(MAX_PDF_SIZE / 1024 / 1024)}MB.</p>
+              </div>
+              <label className="block text-xs">
+                <span className="text-muted-foreground">Select PDF</span>
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={handlePdfUpload}
+                  className="mt-1 block w-full text-xs"
+                />
+              </label>
+              {pdfError && <p className="text-xs text-destructive">{pdfError}</p>}
+              {pdfAsset && (
+                <button
+                  type="button"
+                  onClick={handlePdfRemove}
+                  className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-semibold"
+                >
+                  Remove current PDF
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {slots
           .filter((s) => !!s.imageUrl && !isHiddenName(s.name))
