@@ -148,6 +148,7 @@ const STORAGE_KEY = "product_slots_v1";
 const ADMIN_STORAGE_KEY = "product_grid_admin_access";
 const PDF_STORAGE_KEY = "product_grid_pdf_v1";
 const MAX_PDF_SIZE = 2 * 1024 * 1024;
+const MAX_PDF_MB = Math.round(MAX_PDF_SIZE / (1024 * 1024));
 
 function makeInitialSlots(): Slot[] {
   const total = Math.max(20, products.length + extraImages.length);
